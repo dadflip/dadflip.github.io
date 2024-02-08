@@ -1,0 +1,570 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f0f0f0;
+    background-image: url('bg/5.png'); /* Correction ici */
+    background-size: cover; /* Ajustement selon les besoins */
+    overflow: auto; /* Ajout de la barre de défilement */
+    transition: background-color 0.5s;
+    justify-content: center;
+}
+
+.overlay-menu {
+    height: 0;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    bottom: 20px;
+    left: 50%;
+    background-color: #000000;
+    overflow-y: hidden;
+    transition: width 0.5s, height 0.5s;
+    border-radius: 0%;
+    border: #ccc, 2px;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.overlay-menu a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    text-align: center;
+}
+
+.overlay-menu a:hover,
+.overlay-menu a:focus {
+    color: #f1f1f1;
+}
+
+.overlay-menu .closebtn {
+    position: absolute;
+    bottom: 20px;
+    right: 25px;
+    font-size: 40px;
+    cursor: pointer;
+    color: #818181;
+    transition: transform 0.3s;
+}
+
+.menu-btn {
+    font-size: 70px;
+    cursor: pointer;
+    position: fixed;
+    bottom: 80px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #000000;
+    z-index: 2;
+    transition: color 0.5s;
+}
+
+.content {
+    text-align: center;
+    margin-top: 50px;
+    position: relative;
+    justify-content: center;
+}
+
+/* Ajout de marges pour éviter le chevauchement avec la barre de recherche */
+.content > div {
+    margin-top: 80px;
+}
+
+/* Ajout du style pour la barre de défilement */
+.resultats {
+    max-height: 70vh; /* Hauteur maximale de la zone de résultats */
+    overflow-y: auto; /* Ajout de la barre de défilement uniquement si nécessaire */
+}
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #f0f0f0;
+    /* Autres styles pour chaque diapositive */
+}
+
+.banner {
+    background-color: #f0f0f0;
+    color: rgb(0, 0, 0);
+    padding: 5px;
+    text-align: center;
+    border-radius: 10px;
+    height: 80%;
+    width: 75%;
+}
+
+footer {
+    background-color: #013603;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0.5, 0);
+}
+
+.search-bar {
+    width: 40%;
+    height: 4%;
+    background-color: #f0f0f003;
+    border: 1px solid #004113;
+    border-radius: 20px;
+    position: fixed;
+    bottom: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: width 0.5s;
+    z-index: 3; /* Ajustement pour placer la barre de recherche au-dessus des flipboxes */
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    width: calc(100% - 30px);
+    padding: 8px;
+    box-sizing: border-box;
+    border-radius: 20px;
+}
+
+.search-bar:hover {
+    width: 30%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.9);
+}
+
+.search-bar .search-icon {
+    font-size: 20px;
+    color: #055e08;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.search-bar:hover .search-icon {
+    transform: rotate(90deg);
+}
+
+.flip-box-container {
+    text-align: center;
+}
+
+
+.flip-box {
+    background-color: transparent;
+    border-radius: 20px;
+    width: 20%; /* Utilisez des valeurs relatives pour une meilleure adaptabilité */
+    height: 300px;
+    perspective: 1000px;
+    margin: 20px;
+    display: inline-block;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.flip-box-inner {
+    width: 100%; /* Ajustez la largeur pour occuper toute la boîte parente */
+    height: 100%; /* Ajustez la hauteur pour occuper toute la boîte parente */
+    transform-style: preserve-3d;
+    transition: transform 0.5s;
+    transform-origin: center center;
+}
+
+.flip-box.clickable .flip-box-inner.flipped {
+    transform: rotateY(180deg);
+}
+
+.flip-box-front,
+.flip-box-back {
+    width: 90%;
+    height: 90%;
+    position: absolute;
+    backface-visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.5s;
+}
+
+.flip-box-front {
+    background-color: #ffffff65;
+    color: #000;
+    text-align: center;
+    /*border: 1px solid #000;*/
+    border-radius: 20px;
+    transform: rotateY(0deg);
+    display: flex;
+    flex-direction: column;
+}
+
+.flip-box-back {
+    background-color: #ffffff7e;
+    color: #005515;
+    text-align: center;
+    /*border: 1px solid #004113;*/
+    border-radius: 20px;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+}
+
+.flip-box.clickable {
+    cursor: pointer;
+}
+
+.no-flip {
+    cursor: auto; /* Désactive le curseur pointer pour les éléments non cliquables */
+}
+
+.cadre {
+    border: 0.5px solid #f0f0f0;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 70%;
+    height: 50%; /* Utilisez des valeurs relatives */
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 45%; /* Aspect ratio de 16:9 */
+    position: relative;
+    border-radius: 10px;
+    background-color: #000000;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.cadre img,
+.cadre video {
+    max-width: 95%;
+    max-height: 90%;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.scrollable-content {
+    max-height: 200px;
+    overflow-y: scroll;
+    text-align: center;
+    margin: 20px 5%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    font-size: 12px;
+    color: rgb(0, 0, 0);
+    border: 0.5px solid #4CAF50;
+    font-weight: bold; /* Mettez le texte en gras */
+    /*font-family: 'VotrePolice', sans-serif; /* Remplacez 'VotrePolice' par le nom de la police souhaitée */
+}
+
+/* Styliser la barre de défilement */
+.scrollable-content::-webkit-scrollbar,
+.commentaires::-webkit-scrollbar,
+.flip-box-container::-webkit-scrollbar,
+.scrollable-content::-webkit-scrollbar,
+.resultats::-webkit-scrollbar {
+    width: 10px; /* Largeur de la barre de défilement */
+    border-radius: 10px;
+    border: 1px dotted #000;
+}
+
+.scrollable-content::-webkit-scrollbar-thumb,
+.commentaires::-webkit-scrollbar-thumb,
+.flip-box-container::-webkit-scrollbar-thumb,
+.scrollable-content::-webkit-scrollbar-thumb,
+.resultats::-webkit-scrollbar-thumb {
+    background-color: #4CAF50; /* Couleur de la poignée de la barre de défilement */
+    border-radius: 5px; /* Bordure de la poignée de la barre de défilement */
+}
+
+.scrollable-content::-webkit-scrollbar-track {
+    background-color: #f0f0f0; /* Couleur de fond de la barre de défilement */
+}
+
+.actions {
+    text-align: center;
+    border-radius: 20px;
+    background-color: #008CBA;
+    margin: 5px 0;
+    position: flex;
+    bottom: 0;
+    left: 50px;
+    right: 0;
+    background-color: white; /* Ajoutez cette ligne pour une meilleure visibilité */
+    padding: 10px; /* Ajoutez cette ligne pour un meilleur espacement */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+    width: 60%;
+    border: 1px solid #4CAF50;
+}
+
+.action-icon {
+    margin: 0 10px;
+    font-size: 15px;
+    cursor: pointer;
+    color: #000000;
+}
+
+.commentaires {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.commentaires textarea {
+    height: 50%;
+    width: 100%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    overflow: auto;
+    resize: none;
+    box-shadow: 0 8px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    position: auto;
+}
+
+.commentaires .envoyer-commentaire {
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+}
+
+
+.profil-section {
+    text-align: center;
+    margin-bottom: 20px; /* Ajustez la marge selon votre préférence */
+}
+
+.profil-section img {
+    width: 50px; /* Ajustez la taille de l'icône de profil selon votre préférence */
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);        
+}
+
+.back-button {
+    position: fixed;
+    bottom: 8%;
+    left: 50%;
+    z-index: 3; /* Au-dessus des flipboxes et de la barre de recherche */
+    background-color: #003a0550; /* Couleur de fond */
+    border-radius: 8px;
+    color: white; /* Couleur du texte */
+    border: none; /* Supprimer la bordure */
+    padding: 10px 15px; /* Espacement intérieur */
+    font-size: 16px; /* Taille de la police */
+    cursor: pointer;
+    display: block; /* Afficher en tant que bloc pour le centrer */
+    margin: 20px auto; /* Marge pour centrer horizontalement */
+    width: 20%;
+    transform: translateX(-50%); /* Centrer horizontalement */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.ante-footer {
+    bottom: 5px;
+    height: 40%;
+    background-color: black;
+}
+
+
+.loading-icon {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 4; /* Au-dessus de tout, y compris la barre de recherche, les résultats et le bouton Back */
+}
+
+
+/* Animation de rotation */
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    100% {
+        transform: rotate(360deg) scale(0.8);
+    }
+}
+
+/* Appliquer l'animation à l'icône */
+.loading-logo {
+    animation: rotate 0.5s linear forwards; /* 2s de rotation, arrêt après 2 secondes */
+}
+
+.vertical-menu {
+    display: none; /* Caché par défaut */
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    position: fixed;
+    top: 50%;
+    left: 0%;
+    transform: translateY(-50%);
+    background-color: #000000;
+    padding-top: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    z-index: 5; /* Au-dessus des flipboxes, de la barre de recherche et du bouton Back */
+}
+
+.vertical-menu ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.vertical-menu li {
+    padding: 15px;
+    text-align: center;
+}
+
+.vertical-menu a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 18px;
+    display: block;
+    transition: 0.3s;
+}
+
+.vertical-menu a:hover,
+.vertical-menu li:hover {
+    background-color: #555;
+}
+
+.menu-btn {
+    font-size: 24px;
+    position: sticky;
+    border-radius: 10px;
+    top: 10%;
+    left: 12%;
+    cursor: pointer;
+    z-index: 20; /* Au-dessus de tout, y compris le menu */
+    background: #000000;
+    color: #fff;
+    border: none;
+    padding: 0px;
+    width: 5%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.user-info-bar {
+    background-color: #000000; /* Couleur de fond de la bande utilisateur */
+    color: #fff; /* Couleur du texte */
+    padding: 10px; /* Espacement interne */
+    text-align: right; /* Alignement du texte à droite */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.user-avatar {
+    width: 60px; /* Ajustez la taille de l'avatar selon vos besoins */
+    height: 60px;
+    border-radius: 50%; /* Pour obtenir une forme circulaire */
+    margin-left: 89%; /* Espacement entre le nom et l'avatar */
+}
+
+.user-name {
+    font-weight: bold; /* Pour mettre en gras le nom de l'utilisateur */
+    margin-right: 10px; /* Espacement entre le nom et le bord droit */
+}
+
+/* Ajouter ces styles pour rendre la surbrillance visible */
+.surligne {
+    background-color: #008CBA;
+    font-weight: bold;
+}
+
+
+#newTopicForm {
+    max-width: 800px; /* Ajustez la largeur maximale du formulaire selon vos besoins */
+    margin: 20px auto; /* Centre le formulaire horizontalement avec une marge autour */
+    max-height: 500px; /* Ajustez la hauteur maximale selon vos besoins */
+    overflow-y: auto;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    border-radius: 10px;
+}
+
+#newTopicForm input[type="file"]::-webkit-file-upload-button {
+    width: 80%;
+    background-color: #00506b;
+    border-radius: 10px;;
+}
+
+/* Style des libellés (labels) */
+label {
+    display: block; /* Place chaque libellé sur une nouvelle ligne */
+    margin-bottom: 5px; /* Marge en bas pour l'espace entre les libellés et les champs de saisie */
+}
+
+/* Style des champs de saisie (input, textarea, select) */
+input[type="text"],
+input[type="button"],
+textarea,
+select {
+    width: 90%; /* Remplir la largeur du conteneur parent */
+    padding: 8px; /* Ajoutez un rembourrage pour un meilleur aspect visuel */
+    margin-left: 10px; /* Marge en bas pour l'espace entre les champs de saisie */
+    box-sizing: border-box; /* Inclut le rembourrage et la bordure dans la largeur/hauteur totale */
+}
+
+/* Style du bouton */
+input[type="submit"] {
+    background-color: #4CAF50; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    padding: 10px 15px; /* Rembourrage pour le bouton */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer; /* Curseur de type pointeur au survol */
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049; /* Couleur de fond au survol */
+}
+
+/* Style pour le bouton d'affichage/masquage du formulaire */
+button {
+    background-color: #008CBA;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Style pour le bouton d'affichage/masquage du formulaire au survol */
+button:hover {
+    background-color: #00506b;
+}
+
+/* Style pour centrer les médias */
+.media-center {
+    display: block; /* Afficher comme élément de bloc */
+    margin: auto; /* Marge automatique pour centrer horizontalement */
+    top: 5%;
+}

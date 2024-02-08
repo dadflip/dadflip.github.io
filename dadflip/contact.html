@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Style inputs */
+        input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit] {
+            background-color: #013603;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #006400;
+        }
+
+        /* Style the container/contact section */
+        .container {
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px; /* Increased padding for more space */
+            margin: 20px auto; /* Center the container */
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+            width: 80%;
+        }
+
+        /* Create two columns that float next to each other */
+        .column {
+            float: left;
+            width: 50%;
+            margin-top: 6px;
+            padding: 20px;
+        }
+
+        /* Add background colors for visual appeal */
+        .column:nth-child(odd) {
+            background-color: #000000; /* Dark green for odd columns */
+            color: white;
+        }
+
+        .column:nth-child(even) {
+            background-color: #f2f2f2; /* Light gray for even columns */
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 600px) {
+            .column, input[type=submit] {
+                width: 100%;
+                margin-top: 0;
+            }
+        }
+
+        /* Additional styles for footer */
+        footer {
+            background-color: #013603;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div style="text-align:center">
+        <h2>Contactez Nous</h2>
+        <p>Soutenez-nous ou laissez-nous un message:</p>
+    </div>
+    <div class="row">
+        <div class="column">
+            <img src="/dadflip/assets/img/logo/2-removebg-preview.png" style="width:100%">
+        </div>
+        <div class="column">
+            <a href="/dadflip/" style="text-decoration: none;">
+              <button style="background-color: #006400; color: white; padding: 12px 20px; border: none; border-radius: 5px; cursor: pointer; margin-top: 16px;">
+                  Accueil
+              </button>
+            </a>
+            <br><br>
+            <form action="/action_page.php">
+                <label for="fname">First Name</label>
+                <input type="text" id="fname" name="firstname" placeholder="Your name..">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+                <label for="country">Country</label>
+                <select id="country" name="country">
+                    <option value="france">France</option>
+                    <option value="swiss">Suisse</option>
+                    <option value="belgium">Belgique</option>
+                </select>
+                <label for="subject">Subject</label>
+                <textarea id="subject" name="subject" placeholder="Write something.." style="height:170px"></textarea>
+                <input type="submit" value="Submit">
+                <!-- Ajout du bouton pour revenir à la page d'accueil -->
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2024 Dadflip Solutions</p>
+</footer>
+
+</body>
+</html>

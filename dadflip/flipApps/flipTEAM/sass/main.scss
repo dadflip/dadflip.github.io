@@ -1,0 +1,19 @@
+@import "./basic/basic";
+
+@import "./components/buttons";
+@import "./components/header";
+@import "./components/footer";
+@import "./components/mobileNav";
+
+@import "./structure/l-container.scss";
+
+@import "./structure/home/hero";
+@import "./structure/home/build";
+@import "./structure/home/testimonials";
+@import "./structure/home/cta";
+
+@import "./structure/about/about";
+@import "./structure/about/team";
+@import "./structure/about/client";
+
+@import "./structure/contact/contact";
