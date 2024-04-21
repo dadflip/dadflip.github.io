@@ -1,5 +1,0 @@
-[Déménagement] déménagement aide emballage transport
-[Anniversaire] anniversaire fête organisation
-[Productivité] entreprise productivité gestion
-[Administratif] démarches administratives formalités
-[Autre] autre mot_cle1 mot_cle2
