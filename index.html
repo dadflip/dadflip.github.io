@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dadflip GitHub</title>
+    <title>Dadflip GitHub - git.dadflip.fr</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -22,6 +22,12 @@
             color: #007bff;
             font-size: 2.5em;
             margin-bottom: 20px;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        h2 {
+            color: #0056b3;
+            margin-top: 40px;
+            font-size: 2em;
             animation: fadeIn 1.5s ease-in-out;
         }
         p {
@@ -57,9 +63,29 @@
             background-color: #218838;
             transform: scale(1.05);
         }
+        .card {
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+        .card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
         @keyframes fadeIn {
             0% { opacity: 0; transform: translateY(-20px); }
             100% { opacity: 1; transform: translateY(0); }
+        }
+        .video-container {
+            margin: 20px 0;
+        }
+        iframe {
+            width: 100%;
+            height: 315px;
+            border: none;
         }
     </style>
 </head>
@@ -71,13 +97,34 @@
         <main>
             <p>Bienvenue sur Dadflip GitHub, votre portail pour les derniers projets et releases GitHub. Explorez les liens ci-dessous pour accéder directement à nos projets et téléchargements.</p>
             
+            <h2>Projets</h2>
             <div class="links">
-                <a href="https://github.com/Dadflip/project1" class="link">Projet 1</a>
-                <a href="https://github.com/Dadflip/project2" class="link">Projet 2</a>
-                <a href="https://github.com/Dadflip/project3" class="link">Projet 3</a>
+                <div class="card" onclick="window.location='https://github.com/dadflip/LiChroD';">
+                    <h3>Projet 1</h3>
+                    <p>Découvrez notre premier projet, une application innovante qui facilite la gestion de vos tâches quotidiennes.</p>
+                </div>
+                <div class="card" onclick="window.location='https://github.com/dadflip/MAIA';">
+                    <h3>Projet 2</h3>
+                    <p>Notre deuxième projet offre des solutions pour améliorer la productivité au travail. Explorez ses fonctionnalités uniques.</p>
+                </div>
+                <div class="card" onclick="window.location='https://github.com/dadflip/project3';">
+                    <h3>Projet 3</h3>
+                    <p>Ce projet se concentre sur l'apprentissage collaboratif, permettant aux utilisateurs de partager leurs connaissances et d'apprendre ensemble.</p>
+                </div>
             </div>
 
-            <a href="https://github.com/Dadflip/releases" class="download-link">Télécharger les releases</a>
+            <a href="https://github.com/dadflip/releases" class="download-link">Télécharger les releases</a>
+
+            <h2>Vidéos de Présentation</h2>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/example1" allowfullscreen></iframe>
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/example2" allowfullscreen></iframe>
+            </div>
+            <div class="video-container">
+                <iframe src="https://www.youtube.com/embed/example3" allowfullscreen></iframe>
+            </div>
         </main>
         <footer>
             <p>&copy; 2024 Dadflip GitHub. Tous droits réservés.</p>
